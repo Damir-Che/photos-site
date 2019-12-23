@@ -1,4 +1,7 @@
 class PhotosController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :owner, only: : [:edit, :update, :update]
+
 
   def index
     @photos = Photo.all
@@ -22,7 +25,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
   end
 
-  def update # отображает отредактированный пост
+  def update
     @photo = Photo.find(params[:id])
     @photo.update_attributes(photo_params)
     redirect_to @photo
@@ -31,7 +34,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
-    redirect_to photos_path #posts_path-ссылка
+    redirect_to photos_path
   end
 
 
@@ -45,4 +48,8 @@ class PhotosController < ApplicationController
     params.require(:photo).permit(:description)
   end
 
+  # def owner
+  #   @photo = current_user.photos.find(params[:id])
+  #   redirect_to photos_path, notice: 'У вас нет разрешения на изменения фотограии'
+  # end
 end

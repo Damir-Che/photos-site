@@ -17,11 +17,13 @@
     <%= link_to 'Новая фотография', new_photo_path %>
 
     <% if user_signed_in? %>
-    <%= link_to 'Выход', destroy_user_session_path, method: :delete, class: 'left' %>
+      <%= link_to 'Выход', destroy_user_session_path, method: :delete, class: 'left' %>
+      <%= link_to current_user.email, edit_user_registration_path, class: 'left' %>
     <% else %>
       <%= link_to 'Регистрация', new_user_registration_path, class: 'right' %>
       <%= link_to 'Вход', new_user_session_path %>
     <% end %>
+    <br> <br>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

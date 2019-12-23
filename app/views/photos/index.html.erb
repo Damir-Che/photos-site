@@ -1,5 +1,17 @@
 <% @photos.each do |photo| %>
 
-  <p>id:<%= photo.id %> - <%= photo.description %></p>
-  <small><%= link_to 'Редактировать', edit_photo_path(photo) %> <%= link_to 'Удалить',photo_path(photo), method: :delete %></small>
+  <div class="container">
+    <p>id:<%= photo.id %> - <%= photo.description %></p>
+    <small>
+      <% if photo.user == current_user %> <!--если фото принадл пользователю -->
+        <%= link_to 'Редактировать', edit_photo_path(photo) %>
+        <%= link_to 'Удалить',photo_path(photo), method: :delete %>
+      <% end %>
+    </small>
+  </div>
+  <hr>
+
+
+
 <% end %>
+
