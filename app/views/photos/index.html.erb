@@ -1,0 +1,5 @@
+<% @photos.each do |photo| %>
+
+  <p>id:<%= photo.id %> - <%= photo.description %></p>
+  <small><%= link_to 'Редактировать', edit_photo_path(photo) %> <%= link_to 'Удалить',photo_path(photo), method: :delete %></small>
+<% end %>

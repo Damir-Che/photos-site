@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PhotoProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= link_to 'Главная', root_path, class: 'left' %>
+    <%= link_to 'About', pages_about_path, class: 'left' %>
+    <%= link_to 'Все фотографии', photos_path, class: 'left' %>
+    <%= link_to 'Новая фотография', new_photo_path %>
+
+    <% if user_signed_in? %>
+    <%= link_to 'Выход', destroy_user_session_path, method: :delete, class: 'left' %>
+    <% else %>
+      <%= link_to 'Регистрация', new_user_registration_path, class: 'right' %>
+      <%= link_to 'Вход', new_user_session_path %>
+    <% end %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+
+    <%= yield %>
+  </body>
+</html>
